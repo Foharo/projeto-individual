@@ -1,0 +1,100 @@
+.campo-largo {
+  flex: 2 1 260px;
+}
+
+.form-botoes {
+  display: flex;
+  gap: 10px;
+  flex: 1 1 100%;
+}
+
+.titulo-secao {
+  font-size: 1.05rem;
+  color: var(--destaque);
+}
+
+.jogos-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.jogo-card {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.jogo-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primaria);
+}
+
+.jogo-capa {
+  height: 120px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jogo-capa span {
+  font-family: var(--fonte-titulo);
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.jogo-genero {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-style: normal;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(13, 10, 31, 0.75);
+  color: var(--destaque);
+}
+
+.jogo-corpo {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.jogo-corpo h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.jogo-info {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.jogo-preco {
+  margin: 4px 0 8px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--sucesso);
+}
+
+.jogo-acoes {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.jogo-acoes .botao {
+  flex: 1;
+  padding: 8px 10px;
+}

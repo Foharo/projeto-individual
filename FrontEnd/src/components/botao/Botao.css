@@ -1,18 +1,31 @@
 .botao {
   border: none;
-  border-radius: 6px;
-  padding: 9px 16px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
   color: #fff;
+  transition: transform 0.1s, box-shadow 0.15s;
 }
 
-.botao-primario { background: var(--cor-primaria); }
-.botao-primario:hover { background: var(--cor-primaria-escura); }
+.botao:hover {
+  transform: translateY(-1px);
+}
 
-.botao-perigo { background: var(--cor-perigo); }
-.botao-perigo:hover { background: var(--cor-perigo-escura); }
+.botao-primario {
+  background: linear-gradient(90deg, var(--primaria-escura), var(--primaria));
+}
+.botao-primario:hover {
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.55);
+}
 
-.botao-neutro { background: #e5e7eb; color: var(--cor-texto); }
-.botao-neutro:hover { background: #d1d5db; }
+.botao-perigo { background: var(--perigo); }
+.botao-perigo:hover { background: var(--perigo-escuro); box-shadow: 0 0 14px rgba(244, 63, 94, 0.5); }
+
+.botao-neutro {
+  background: var(--superficie-2);
+  color: var(--texto);
+  border: 1px solid var(--borda);
+}
+.botao-neutro:hover { border-color: var(--destaque); }

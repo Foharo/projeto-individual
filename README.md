@@ -1,6 +1,6 @@
-# Cadastro de Pessoas e Cargos
+# GameVault — Loja de Jogos Digitais
 
-Projeto de CRUD com **React** (Front-end) e **Node.js + Express + Sequelize + PostgreSQL** (Back-end).
+Projeto de CRUD para gerenciar o catálogo de uma loja de jogos digitais, feito com **React** (Front-end) e **Node.js + Express + Sequelize + PostgreSQL** (Back-end).
 
 ## Estrutura
 
@@ -8,15 +8,15 @@ Projeto de CRUD com **React** (Front-end) e **Node.js + Express + Sequelize + Po
 .
 ├── BackEnd/                 API REST
 │   ├── config/database.js   conexão com o PostgreSQL
-│   ├── models/              Cargo, Pessoa e relacionamento
+│   ├── models/              Genero, Jogo e relacionamento
 │   ├── controllers/         regras de cada operação do CRUD
-│   ├── routes/              rotas /cargos e /pessoas
+│   ├── routes/              rotas /generos e /jogos
 │   ├── database.sql         script SQL opcional (tabelas + dados de teste)
 │   └── backend.js           ponto de entrada do servidor (porta 3000)
 └── FrontEnd/                Interface React (Vite)
     └── src/
-        ├── components/      Header, Footer, Main, Botao, Alerta
-        ├── pages/           Home, Pessoas, Cargos
+        ├── components/      Sidebar, Footer, Main, Botao, Alerta
+        ├── pages/           Home, Jogos, Generos
         └── services/api.js  comunicação com o back-end
 ```
 
@@ -61,25 +61,25 @@ Acesse http://localhost:5173. Se o back-end estiver em outro endereço, crie `Fr
 
 | Método | Rota            | Ação                |
 |--------|-----------------|---------------------|
-| GET    | `/cargos`       | Listar cargos       |
-| POST   | `/cargos`       | Cadastrar cargo     |
-| PUT    | `/cargos/:id`   | Atualizar cargo     |
-| DELETE | `/cargos/:id`   | Excluir cargo       |
-| GET    | `/pessoas`      | Listar pessoas      |
-| POST   | `/pessoas`      | Cadastrar pessoa    |
-| PUT    | `/pessoas/:id`  | Atualizar pessoa    |
-| DELETE | `/pessoas/:id`  | Excluir pessoa      |
+| GET    | `/generos`      | Listar gêneros      |
+| POST   | `/generos`      | Cadastrar gênero    |
+| PUT    | `/generos/:id`  | Atualizar gênero    |
+| DELETE | `/generos/:id`  | Excluir gênero      |
+| GET    | `/jogos`        | Listar jogos        |
+| POST   | `/jogos`        | Cadastrar jogo      |
+| PUT    | `/jogos/:id`    | Atualizar jogo      |
+| DELETE | `/jogos/:id`    | Excluir jogo        |
 
-Corpo de `/cargos`: `{ "nome": "Gerente" }`
-Corpo de `/pessoas`: `{ "nome": "Ana", "email": "ana@email.com", "cargoId": 1 }`
+Corpo de `/generos`: `{ "nome": "RPG" }`
+Corpo de `/jogos`: `{ "titulo": "Celeste", "desenvolvedora": "Maddy Makes Games", "ano": 2018, "preco": 36.99, "generoId": 1 }`
 
 ## Roteiro para a demonstração
 
-1. Abrir **Cargos** e cadastrar, por exemplo, "Gerente" (**Create**).
+1. Abrir **Gêneros** e cadastrar, por exemplo, "RPG" (**Create**).
 2. A lista é atualizada com o novo registro (**Read**).
 3. Clicar em **Editar**, mudar o nome e salvar (**Update**).
-4. Ir em **Pessoas**, cadastrar uma pessoa escolhendo o cargo.
+4. Ir em **Jogos**, cadastrar um jogo escolhendo o gênero; ele aparece como card no catálogo.
 5. Clicar em **Excluir** para remover um registro (**Delete**).
-6. Conferir no banco: `SELECT * FROM cargos;` e `SELECT * FROM pessoas;`.
+6. Conferir no banco: `SELECT * FROM generos;` e `SELECT * FROM jogos;`.
 
-> Um cargo que ainda possui pessoas não pode ser excluído (a API retorna uma mensagem explicando).
+> Um gênero que ainda possui jogos não pode ser excluído (a API retorna uma mensagem explicando).

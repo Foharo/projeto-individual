@@ -1,20 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/header/Header";
+import Sidebar from "./components/sidebar/Sidebar";
 import Footer from "./components/footer/Footer";
 import Home from "./pages/home/Home";
-import Pessoas from "./pages/pessoas/Pessoas";
-import Cargos from "./pages/cargos/Cargos";
+import Jogos from "./pages/jogos/Jogos";
+import Generos from "./pages/generos/Generos";
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/pessoas" element={<Pessoas />} />
-        <Route path="/cargos" element={<Cargos />} />
-      </Routes>
-      <Footer />
+      <div className="app">
+        <Sidebar />
+        <div className="coluna">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/jogos" element={<Jogos />} />
+            <Route path="/generos" element={<Generos />} />
+          </Routes>
+          <Footer />
+        </div>
+      </div>
     </BrowserRouter>
   );
 }
