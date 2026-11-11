@@ -1,42 +1,41 @@
-const Pessoa = require("../models/pessoaModel");
+const { Pessoa, Cargo } = require("../models");
 
-async function listar(req, res) {
-    try {
-        const pessoas = await Pessoa.listar();
-        res.json(pessoas);
-    } catch (erro) {
-        res.status(500).json({ erro: erro.message });
-    }
-}
+const incluirCargo = [{ model: Cargo, as: "cargo", attributes: ["id", "nome"] }];
 
-async function buscar(req, res) {
-    try {
-        const pessoa = await Pessoa.buscarPorId(req.params.id);
+// GET /pessoas
+exports.listar = async (req, res) => {
+    const pessoas = await Pessoa.findAll({ include: incluirCargo, order: [["nome", "ASC"]] });
+    res.json(pessoas);
+};
 
-        if (!pessoa) {
-            return res.status(404).json({ mensagem: "Pessoa não encontrada" });
-        }
+// GET /pessoas/:id
+exports.buscar = async (req, res) => {
+    const pessoa = await Pessoa.findByPk(req.params.id, { include: incluirCargo });
+    if (!pessoa) return res.status(404).json({ erro: "Pessoa não encontrada." });
+    res.json(pessoa);
+};
 
-        res.json(pessoa);
-    } catch (erro) {
-        res.status(500).json({ erro: erro.message });
-    }
-}
+// POST /pessoas
+exports.criar = async (req, res) => {
+    const { nome, email, cargoId } = req.body;
+    const pessoa = await Pessoa.create({ nome, email, cargoId });
+    res.status(201).json(await Pessoa.findByPk(pessoa.id, { include: incluirCargo }));
+};
 
-async function inserir(req, res) {
-    try {
-        const { nome_pess } = req.body;
+// PUT /pessoas/:id
+exports.atualizar = async (req, res) => {
+    const pessoa = await Pessoa.findByPk(req.params.id);
+    if (!pessoa) return res.status(404).json({ erro: "Pessoa não encontrada." });
 
-        const pessoa = await Pessoa.inserir(nome_pess);
+    const { nome, email, cargoId } = req.body;
+    await pessoa.update({ nome, email, cargoId });
+    res.json(await Pessoa.findByPk(pessoa.id, { include: incluirCargo }));
+};
 
-        res.status(201).json(pessoa);
-    } catch (erro) {
-        res.status(500).json({ erro: erro.message });
-    }
-}
-
-module.exports = {
-    listar,
-    buscar,
-    inserir,
+// DELETE /pessoas/:id
+exports.excluir = async (req, res) => {
+    const pessoa = await Pessoa.findByPk(req.params.id);
+    if (!pessoa) return res.status(404).json({ erro: "Pessoa não encontrada." });
+    await pessoa.destroy();
+    res.status(204).send();
 };

@@ -1,17 +1,12 @@
 const express = require("express");
+const controller = require("../controllers/cargoController");
 
 const router = express.Router();
 
-const controller = require("../controllers/cargoController");
-
 router.get("/", controller.listar);
-
 router.get("/:id", controller.buscar);
-
-router.post("/", controller.inserir);
-
+router.post("/", controller.criar);
 router.put("/:id", controller.atualizar);
-
 router.delete("/:id", controller.excluir);
 
 module.exports = router;
