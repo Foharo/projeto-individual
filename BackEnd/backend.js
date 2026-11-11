@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const { sequelize } = require("./models");
 
-const cargoRoutes = require("./routes/cargoRoutes");
-const pessoaRoutes = require("./routes/pessoaRoutes");
+const generoRoutes = require("./routes/generoRoutes");
+const jogoRoutes = require("./routes/jogoRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,8 +12,8 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => res.json({ mensagem: "API em funcionamento" }));
-app.use("/cargos", cargoRoutes);
-app.use("/pessoas", pessoaRoutes);
+app.use("/generos", generoRoutes);
+app.use("/jogos", jogoRoutes);
 
 // Tratamento central de erros (validação, duplicidade, etc.)
 app.use((err, req, res, next) => {
@@ -21,10 +21,10 @@ app.use((err, req, res, next) => {
         return res.status(400).json({ erro: err.errors.map((e) => e.message).join(" ") });
     }
     if (err.name === "SequelizeUniqueConstraintError") {
-        return res.status(409).json({ erro: "Já existe um registro com esse valor." });
+        return res.status(409).json({ erro: "Já existe um registro com esse nome." });
     }
     if (err.name === "SequelizeForeignKeyConstraintError") {
-        return res.status(400).json({ erro: "Cargo informado é inválido." });
+        return res.status(400).json({ erro: "Gênero informado é inválido." });
     }
     if (err.name === "SequelizeDatabaseError") {
         return res.status(400).json({ erro: "Dados inválidos." });

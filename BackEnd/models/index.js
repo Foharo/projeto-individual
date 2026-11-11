@@ -1,10 +1,10 @@
 const sequelize = require("../config/database");
-const Cargo = require("./Cargo");
-const Pessoa = require("./Pessoa");
+const Genero = require("./Genero");
+const Jogo = require("./Jogo");
 
-// Relacionamento: um cargo possui várias pessoas; cada pessoa tem um cargo.
-// RESTRICT impede excluir um cargo que ainda esteja em uso.
-Cargo.hasMany(Pessoa, { foreignKey: "cargoId", as: "pessoas", onDelete: "RESTRICT" });
-Pessoa.belongsTo(Cargo, { foreignKey: { name: "cargoId", allowNull: false }, as: "cargo" });
+// Relacionamento: um gênero possui vários jogos; cada jogo pertence a um gênero.
+// RESTRICT impede excluir um gênero que ainda esteja em uso.
+Genero.hasMany(Jogo, { foreignKey: "generoId", as: "jogos", onDelete: "RESTRICT" });
+Jogo.belongsTo(Genero, { foreignKey: { name: "generoId", allowNull: false }, as: "genero" });
 
-module.exports = { sequelize, Cargo, Pessoa };
+module.exports = { sequelize, Genero, Jogo };

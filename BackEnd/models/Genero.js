@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const Cargo = sequelize.define(
-    "Cargo",
+const Genero = sequelize.define(
+    "Genero",
     {
         id: {
             type: DataTypes.INTEGER,
@@ -13,10 +13,10 @@ const Cargo = sequelize.define(
             type: DataTypes.STRING(50),
             allowNull: false,
             unique: true,
-            validate: { notEmpty: { msg: "O nome do cargo é obrigatório." } },
+            validate: { notEmpty: { msg: "O nome do gênero é obrigatório." } },
         },
     },
-    { tableName: "cargos", timestamps: false }
+    { tableName: "generos", timestamps: false }
 );
 
-module.exports = Cargo;
+module.exports = Genero;

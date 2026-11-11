@@ -3,20 +3,23 @@
 
 -- CREATE DATABASE aulaprog;
 
-CREATE TABLE IF NOT EXISTS cargos (
+CREATE TABLE IF NOT EXISTS generos (
     id   SERIAL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL UNIQUE
 );
 
-CREATE TABLE IF NOT EXISTS pessoas (
-    id       SERIAL PRIMARY KEY,
-    nome     VARCHAR(100) NOT NULL,
-    email    VARCHAR(100) NOT NULL UNIQUE,
-    "cargoId" INTEGER NOT NULL REFERENCES cargos(id) ON DELETE RESTRICT
+CREATE TABLE IF NOT EXISTS jogos (
+    id             SERIAL PRIMARY KEY,
+    titulo         VARCHAR(100) NOT NULL,
+    desenvolvedora VARCHAR(100) NOT NULL,
+    ano            INTEGER NOT NULL,
+    preco          DECIMAL(10,2) NOT NULL,
+    "generoId"     INTEGER NOT NULL REFERENCES generos(id) ON DELETE RESTRICT
 );
 
 -- Dados de teste
-INSERT INTO cargos (nome) VALUES ('Gerente'), ('Analista'), ('Estagiário');
-INSERT INTO pessoas (nome, email, "cargoId") VALUES
-    ('Ana Souza', 'ana@email.com', 1),
-    ('Carlos Lima', 'carlos@email.com', 2);
+INSERT INTO generos (nome) VALUES ('Ação'), ('RPG'), ('Aventura'), ('Esportes'), ('Estratégia');
+INSERT INTO jogos (titulo, desenvolvedora, ano, preco, "generoId") VALUES
+    ('The Witcher 3: Wild Hunt', 'CD Projekt Red', 2015, 79.90, 2),
+    ('Celeste', 'Maddy Makes Games', 2018, 36.99, 3),
+    ('FIFA 23', 'EA Sports', 2022, 199.90, 4);
