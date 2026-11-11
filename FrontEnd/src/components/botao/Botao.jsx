@@ -1,12 +1,12 @@
-import './Botao.css'
+import "./Botao.css";
 
-function Botao(props) {
+// variante: "primario" (padrão), "perigo" ou "neutro"
+function Botao({ children, variante = "primario", type = "button", ...resto }) {
   return (
-    <button className = 'botao'>
-        {props.titulo}
-        {props.titulo2}
+    <button type={type} className={`botao botao-${variante}`} {...resto}>
+      {children}
     </button>
-  )
+  );
 }
 
 export default Botao;

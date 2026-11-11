@@ -1,11 +1,11 @@
-import './Footer.css'
+import "./Footer.css";
 
 function Footer() {
   return (
     <footer className="footer">
-        <p>Sou uma nota de rodapé</p>
+      <p>Projeto de CRUD — React + Node.js + PostgreSQL</p>
     </footer>
-  )
+  );
 }
 
 export default Footer;

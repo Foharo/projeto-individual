@@ -1,12 +1,10 @@
-.footer{
-    border: 2px solid gold;
-    color: blue;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    margin-top: 30px;
-    position: relative;
-    bottom: 0px;
-    right: 0;
-    left: 0;
+.footer {
+  text-align: center;
+  padding: 16px;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+}
+
+.footer p {
+  margin: 0;
 }

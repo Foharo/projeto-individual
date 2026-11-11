@@ -1,11 +1,13 @@
-import './Main.css'
+import "./Main.css";
 
-function Main() {
+// Área central padrão das páginas: título + conteúdo.
+function Main({ titulo, children }) {
   return (
-    <main>
-        
+    <main className="main">
+      {titulo && <h1>{titulo}</h1>}
+      {children}
     </main>
-  )
+  );
 }
 
 export default Main;
